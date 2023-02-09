@@ -24,7 +24,8 @@ export const FormContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 40%;
+    width: 20%;
+    padding: 10px;
     border-radius: 5px 5px 0px 0px;
     border: none;
     background-color: #fff;
@@ -32,39 +33,33 @@ export const FormContainer = styled.div`
 
 export const Form = styled.div`
     display: flex;
-    flex-direction: column;
-    padding: 15px;
+    width: 100%;
     h3{
         margin: 0;
         font-weight: 600;
     };
-    input{
-        width: 97%;
-        height: 40px;
+`;
+
+export const formulario = styled.div`
+    display: flex;
+    width: 100%;
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        
+    }
+    input{ 
+        height: 30px;
         margin-bottom: 20px;
         border-radius: 5px;
         border: 1px solid #979dac;
         outline: none;
         font-size: 20px;
-        padding-left: 15px;
-    };
+        padding: 8px;
+    };   
 
-    input.data{
-        height: 45px;
-        padding-right: 5px;
-    }
-`;
-
-export const Title = styled.div`
-    display: flex;
-    width: auto;
-    height: 80px;
-    background-color: #DD0426;
-    color: #fff;
-    border-radius: 5px 5px 0px 0px;
-    border: none;
-    padding-left: 15px;
-    font-size: 20px;
 `;
 
 export const Botao = styled.button`
@@ -82,3 +77,16 @@ export const Botao = styled.button`
         border: none;
     }
 `
+
+export const Title = styled.div`
+    display: flex;
+    width: auto;
+    height: 80px;
+    background-color: #2875E2;
+    color: #fff;
+    border-radius: 5px 5px 0px 0px;
+    border: none;
+    padding-left: 15px;
+    font-size: 20px;
+`;
+
