@@ -24,23 +24,25 @@ const Form = (props:any) => {
                 <C.FormContainer>
                     <C.Title><h3>Preencha os campos</h3></C.Title>
                     <C.Form>
-                        <form>
-                            <h3>Nome do Artista:</h3>
-                            <input type="text" name="nomeArtista" autoComplete="off"
-                                onChange={(e)=> setArtista(e.target.value)}
-                            />
-                            <h3>Nome da Música:</h3>
-                            <input type="text" name="nomeMusica" autoComplete="off" 
-                                onChange={(e)=> setMusica(e.target.value)}
-                            />
-                            <h3>Data:</h3>
-                            <input className="data" type="date" name="dataInicial" autoComplete="off"
-                                onChange={(e)=> setData(e.target.value)}
-                            />
-                            <C.Botao type='button' onClick={cadastro}>
-                                Cadastrar
-                            </C.Botao>
-                        </form>    
+                        <C.formulario>
+                            <form>
+                                <h3>Nome do Artista:</h3>
+                                <input type="text" name="nomeArtista" autoComplete="off"
+                                    onChange={(e)=> setArtista(e.target.value)}
+                                />
+                                <h3>Nome da Música:</h3>
+                                <input type="text" name="nomeMusica" autoComplete="off" 
+                                    onChange={(e)=> setMusica(e.target.value)}
+                                />
+                                <h3>Data:</h3>
+                                <input className="data" type="date" name="dataInicial" autoComplete="off"
+                                    onChange={(e)=> setData(e.target.value)}
+                                />
+                                <C.Botao type='button' onClick={cadastro}>
+                                    Cadastrar
+                                </C.Botao>
+                            </form>    
+                        </C.formulario>
                     </C.Form>
                 </C.FormContainer>
             </C.Container>
