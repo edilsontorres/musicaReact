@@ -3,18 +3,21 @@ import * as Geral from '../../App.styles';
 import { useState } from 'react';
 
 
+
 const Form = (props:any) => {
     const [artista, setArtista] = useState<string>();
     const [musica, setMusica] = useState<string>();
     const [data, setData] = useState<any>();
 
+    
     const cadastro = () => {
-        let dados = {
+        const dados = {
             NomeArtista: artista,
             NomeMusica: musica,
             data: data
         }
         props.cadastrar(dados);
+        
     }
 
     return(
