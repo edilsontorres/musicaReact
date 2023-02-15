@@ -2,11 +2,13 @@ import * as C from '../Pages/Lista.style';
 import * as Geral from '../../App.styles';
 import { useState, useEffect } from 'react';
 import { api } from '../Services/api';
+import { useNavigate } from 'react-router-dom';
 
 
-export const Lista = () => {
+export const Lista = (props:any) => {
+    const navigate = useNavigate();
     const [musicas, setMusicas] = useState<any[]>([]);
-
+ 
     const listar = async() => {
         await api.get('/api/musica')
         .then((res) => {
@@ -17,10 +19,22 @@ export const Lista = () => {
         listar();
     }, [])
 
+    const cadastrar = () =>{
+        navigate('/cadastro')
+    }
+
     //apagando música do DB e filtrando para renderizar o que sobra de registros no DB
     const apagar = async(id:any) => {
         await api.delete(`/api/musica/${id}`)
-        setMusicas(musicas.filter(musica => musica.id != id))
+        setMusicas(musicas.filter(musica => musica.id !== id))
+    }
+
+    //Função pega pelo id e envia para a pagina de edição
+    const editar = async(id:any) => {
+        
+        if(id !== ''){
+            navigate(`/editar/${id}`);
+        }
     }
 
     //funcão que formata a data recebida
@@ -32,6 +46,14 @@ export const Lista = () => {
     return(
         <>
             <Geral.Title>Musicas cadastradas</Geral.Title>
+            <C.CadastrarArea>
+                <C.Cadastrar>
+                    <button className='cadastro' onClick={cadastrar}>
+                        Nova Musica
+                    </button>
+                </C.Cadastrar>
+            </C.CadastrarArea>
+        
             <C.Container>
                 <C.listContainer>
                     <C.Tabela>
@@ -54,10 +76,16 @@ export const Lista = () => {
                                 <td>
                                     <C.areaAcao>
                                         <C.Acao>
-                                            <button className='editar'>Editar</button>
+                                            <button className='editar'
+                                                onClick={()=> editar(musica.id)}>
+                                                Editar
+                                            </button>
                                         </C.Acao>
                                         <C.Acao>
-                                            <button className='excluir' onClick={()=> apagar(musica.id)}>Excluir</button>
+                                            <button className='excluir' 
+                                                onClick={()=> apagar(musica.id)}>
+                                                Excluir
+                                            </button>
                                         </C.Acao>
                                     </C.areaAcao>
                                 </td>
