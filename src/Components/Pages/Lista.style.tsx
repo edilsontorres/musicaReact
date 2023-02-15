@@ -69,5 +69,39 @@ export const Acao = styled.div`
     .excluir{
         background-color: #DD0426;
         color: #F0F2EF;
-    }
+    };
+    
 `;
+
+export const CadastrarArea = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Cadastrar = styled.div`
+    display: flex;
+    width: 38%;
+    padding-right: 9px;
+    justify-content: end;
+    margin-bottom: 10px;
+    button {
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        border-radius: 3px;
+        width: 90px;
+        height: 40px;
+        cursor: pointer;
+    };
+    .cadastro{
+        width: 150px;
+        background-color: green;
+        color: #F0F2EF;
+        
+    };
+
+`;
+
