@@ -4,35 +4,41 @@ import { useState, useEffect } from 'react';
 import { api } from "../Services/api";
 import { useParams } from 'react-router-dom';
 
+
 const Form = (props:any) => {
     const { id } = useParams();
-    const [nomeArtista, setnomeArtista] = useState<string>();
-    const [nomeMusica, setnomeMusica] = useState<string>();
-
-    //pegando informações do Id
-    useEffect(()=>{
-        api.get(`/api/musica/${id}`)
-        .then(res => {
-            setnomeArtista(res.data.nomeArtista);
-            setnomeMusica(res.data.nomeMusica);
-            
-        })
-    })
-
     const [artista, setArtista] = useState<string>();
     const [musica, setMusica] = useState<string>();
     const [data, setData] = useState<any>();
 
+    
+
+    //funcão que formata a data recebida
+    const dataBDFormatar = (date:any)=>{
+        var strData = `${date.substr(8, 2)}/${date.substr(5, 2)}/${date.substr(0, 4)}`;
+        return strData;
+    }
+    
+    useEffect(()=>{
+        api.get(`/api/musica/${id}`)
+        .then(res => {
+            setArtista(res.data.nomeArtista);
+            setMusica(res.data.nomeMusica);
+            setData(res.data.data);
+        })
+        
+    }, [])
+
     const atualizar = () => {
         const dados = {
-            NomeArtista: artista,
-            NomeMusica: musica,
+            nomeArtista: artista,
+            nomeMusica: musica,
             data: data
         }
         props.atualizar(dados);
         
     }
-
+   
     return(
         <>
             <Geral.Title>Atualizar cadastro</Geral.Title>
@@ -44,15 +50,15 @@ const Form = (props:any) => {
                             <form>
                                 <h3>Nome do Artista:</h3>
                                 <input type="text" autoComplete="off"
-                                defaultValue={nomeArtista} onChange={(e)=> setArtista(e.target.value)} 
+                                    defaultValue={artista} onChange={(e)=> setArtista(e.target.value)} 
                                 />
                                 <h3>Nome da Música:</h3>
                                 <input type="text" autoComplete="off" 
-                                    defaultValue={nomeMusica} onChange={(e)=> setMusica(e.target.value)}  
+                                    defaultValue={musica} onChange={(e)=> setMusica(e.target.value)}  
                                 />
                                 <h3>Data:</h3>
                                 <input className="data" type="date" name="dataInicial" autoComplete="off"
-                                    onChange={(e)=> setData(e.target.value)}
+                                  defaultValue={data} onChange={(e)=> setData(e.target.value)}
                                 />
                                 <C.Botao type='button' onClick={atualizar}>
                                     Atualizar

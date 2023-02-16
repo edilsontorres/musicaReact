@@ -17,7 +17,7 @@ export const Update = () => {
             .then(response => {
                 if(response.status === 200){
                     alert("Musica atualizada com sucesso!");
-                    navigate('/lista');
+                    navigate('/');
                 }
             })
         }
