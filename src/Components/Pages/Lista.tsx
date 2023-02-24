@@ -5,7 +5,8 @@ import { api } from '../Services/api';
 import { useNavigate } from 'react-router-dom';
 
 
-export const Lista = (props:any) => {
+
+export const Lista = () => {
     const navigate = useNavigate();
     const [musicas, setMusicas] = useState<any[]>([]);
  
@@ -31,7 +32,6 @@ export const Lista = (props:any) => {
 
     //Função pega pelo id e envia para a pagina de edição
     const editar = async(id:any) => {
-        
         if(id !== ''){
             navigate(`/editar/${id}`);
         }
@@ -39,23 +39,28 @@ export const Lista = (props:any) => {
 
     //funcão que formata a data recebida
     const dataBDFormatar = (date:any)=>{
-        var strData = `${date.substr(8, 2)}/${date.substr(5, 2)}/${date.substr(0, 4)}`;
-        return strData;
+        const dataId = new Date(date);
+        let data = new Intl.DateTimeFormat('pt-BR').format(dataId);
+        return data;
     }
 
     return(
         <>
-            <Geral.Title>Musicas cadastradas</Geral.Title>
-            <C.CadastrarArea>
-                <C.Cadastrar>
-                    <button className='cadastro' onClick={cadastrar}>
-                        Nova Musica
-                    </button>
-                </C.Cadastrar>
-            </C.CadastrarArea>
-        
+            <Geral.Title> 
+                <Geral.AreaTitle>
+                    Musicas cadastradas
+                </Geral.AreaTitle>
+            </Geral.Title>
+
             <C.Container>
                 <C.listContainer>
+                    <C.CadastrarArea>
+                        <C.Cadastrar>
+                            <button className='cadastro' onClick={cadastrar}>
+                                ✛ Nova Musica
+                            </button>
+                        </C.Cadastrar>
+                    </C.CadastrarArea>
                     <C.Tabela>
                         <thead>
                             <tr>
@@ -67,33 +72,34 @@ export const Lista = (props:any) => {
                             </tr>
                         </thead>
                         {musicas.map((musica, index)=> 
-                        <tbody key={index}>
-                            <tr>
-                                <td>{musica.id}</td>
-                                <td>{musica.nomeArtista}</td>
-                                <td>{musica.nomeMusica}</td>
-                                <td>{dataBDFormatar(musica.data)}</td>
-                                <td>
-                                    <C.areaAcao>
-                                        <C.Acao>
-                                            <button className='editar'
-                                                onClick={()=> editar(musica.id)}>
-                                                Editar
-                                            </button>
-                                        </C.Acao>
-                                        <C.Acao>
-                                            <button className='excluir' 
-                                                onClick={()=> apagar(musica.id)}>
-                                                Excluir
-                                            </button>
-                                        </C.Acao>
-                                    </C.areaAcao>
-                                </td>
-                            </tr>
-                        </tbody>
+                            <tbody key={index}>
+                                <tr>
+                                    <td><p>{musica.id}</p></td>
+                                    <td><p>{musica.nomeArtista}</p></td>
+                                    <td><p>{musica.nomeMusica}</p></td>
+                                    <td><p>{dataBDFormatar(musica.data)}</p></td>
+                                    <td>
+                                        <C.areaAcao>
+                                            <C.Acao>
+                                                <button className='editar'
+                                                    onClick={()=> editar(musica.id)}>
+                                                    Editar
+                                                </button>
+                                            </C.Acao>
+                                            <C.Acao>
+                                                <button className='excluir' 
+                                                    onClick={()=> apagar(musica.id)}>
+                                                    Excluir
+                                                </button>
+                                            </C.Acao>
+                                        </C.areaAcao>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
                     
                         )}
-                        
+                            
                     </C.Tabela>
                 </C.listContainer>
             </C.Container>
