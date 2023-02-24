@@ -1,6 +1,7 @@
 import * as C from './Form.styles';
 import * as Geral from '../../App.styles';
 import { useState } from 'react';
+import { Home } from '../Home/Home';
 
 
 
@@ -22,7 +23,12 @@ const Form = (props:any) => {
 
     return(
         <>
-            <Geral.Title>Cadastro de Músicas</Geral.Title>
+            <Home />
+            <Geral.Title> 
+                <Geral.AreaTitle>
+                    Cadastro de Músicas
+                </Geral.AreaTitle>
+            </Geral.Title>
             <C.Container>
                 <C.FormContainer>
                     <C.Title><h3>Preencha os campos</h3></C.Title>
