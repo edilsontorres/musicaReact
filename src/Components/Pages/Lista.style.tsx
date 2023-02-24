@@ -4,30 +4,41 @@ export const Tabela = styled.table`
     display: block;
     justify-content: center;
     align-items: center;
+    border-collapse: collapse;
     thead{
         font-size: 20px;
-        background-color: #DD0426;
-        color: #FFFFFF;
-       
+        
     };
     td{
-        border: 1px solid #999;
-        padding: 10px;
+        padding: 5px;
         text-align: center;
-        color: #FFFFFF;
-    
+        color: #2E303A;
+        border-bottom: 1px solid #ccc;
+        
+        
     };
     tbody:nth-child(even){
-        background-color: #2E303A;
+        font-size: 20px;
+        p{
+            background: #BCD4E6;
+            min-width: 100%;
+            
+        }
+       
     };
     tbody:nth-child(odd){
-        background-color: none;
+        font-size: 20px;
+        p{
+            background: transparent;
+        }
     };
+    
    
 `;
 
 export const Container = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -51,55 +62,75 @@ export const areaAcao = styled.div`
 export const Acao = styled.div`
     flex: 1;
     width: 100%;
-    padding: 4px;
+    margin: 2px;
     button {
-        padding: 5px;
-        font-size: 15px;
-        font-weight: 600;
+        font-size: 20px;
         border: none;
-        border-radius: 3px;
-        width: 90px;
-        height: 40px;
+        padding: 5px;
         cursor: pointer;
+        border-radius: 5px;
     };
     .editar{
-        background-color: #3F84E5;
-        color: #F0F2EF;
+        background-color: #99C1DE;
+        color: #2E303A;
     };
     .excluir{
-        background-color: #DD0426;
-        color: #F0F2EF;
+        background-color: red;
+        color: #FFFFFF;
     };
     
 `;
 
 export const CadastrarArea = styled.div`
     display: flex;
-    width: 100%;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 `;
 
-export const Cadastrar = styled.div`
+export const  FiltroArea = styled.div`
     display: flex;
-    width: 38%;
-    padding-right: 9px;
+    align-items: center;
     justify-content: end;
-    margin-bottom: 10px;
+    width: 100%;
+
+`;
+
+export const Filtro = styled.div`
+    display: flex;
+    background-color: #D6E2E9;
+    width: 100%;
     button {
         padding: 5px;
         font-size: 15px;
         font-weight: 600;
         border: none;
-        border-radius: 3px;
-        width: 90px;
-        height: 40px;
+        cursor: pointer;
+    };
+    .filtro{
+        background-color: transparent;
+        color: #2E303A;
+        font-size: 20px;
+        
+    };
+
+`;
+
+export const Cadastrar = styled.div`
+    display: flex;
+    background-color: #D6E2E9;
+    width: 100%;
+    button {
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
         cursor: pointer;
     };
     .cadastro{
-        width: 150px;
-        background-color: green;
-        color: #F0F2EF;
+        background-color: transparent;
+        color: #2E303A;
+        font-size: 20px;
         
     };
 
