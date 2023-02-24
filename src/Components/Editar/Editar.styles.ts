@@ -63,8 +63,8 @@ export const formulario = styled.div`
 `;
 
 export const Botao = styled.button`
-    background-color: #2875E2;
-    color: #fff;
+    background-color: #BCD4E6;
+    color: #2E303A;
     margin-top: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -73,7 +73,7 @@ export const Botao = styled.button`
     height: 40px;
     font-size: 20px;
     :hover {
-        background-color: #3F84E5;
+        background-color: #99C1DE;
         border: none;
     }
 `
@@ -82,8 +82,8 @@ export const Title = styled.div`
     display: flex;
     width: auto;
     height: 80px;
-    background-color: #2875E2;
-    color: #fff;
+    background-color: #BCD4E6;
+    color: #2E303A;
     border-radius: 5px 5px 0px 0px;
     border: none;
     padding-left: 15px;
