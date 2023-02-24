@@ -3,6 +3,10 @@ import * as Geral from '../../App.styles';
 import { useState, useEffect } from 'react';
 import { api } from "../Services/api";
 import { useParams } from 'react-router-dom';
+import { Home } from '../Home/Home';
+import { format } from 'date-fns';
+
+
 
 
 const Form = (props:any) => {
@@ -11,37 +15,50 @@ const Form = (props:any) => {
     const [musica, setMusica] = useState<string>();
     const [data, setData] = useState<any>();
 
-    
-
-    //funcão que formata a data recebida
-    const dataBDFormatar = (date:any)=>{
-        var strData = `${date.substr(8, 2)}/${date.substr(5, 2)}/${date.substr(0, 4)}`;
-        return strData;
-    }
-    
     useEffect(()=>{
         api.get(`/api/musica/${id}`)
         .then(res => {
             setArtista(res.data.nomeArtista);
             setMusica(res.data.nomeMusica);
-            setData(res.data.data);
+            setData(res.data.data)
         })
-        
-    }, [])
+  
+    }, [id])
 
     const atualizar = () => {
         const dados = {
-            nomeArtista: artista,
-            nomeMusica: musica,
+            NomeArtista: artista,
+            NomeMusica: musica,
             data: data
         }
         props.atualizar(dados);
         
     }
-   
+        const dateIsValid = (date:any) => {
+            return !Number.isNaN(new Date(date).getTime());
+        }
+
+        let dataForm = '';
+
+        if(dateIsValid(data)){
+            const formatData = (data:any)=>{
+
+                let dataId = format(new Date(data), 'yyyy-MM-dd');
+                return dataId;
+            }
+            dataForm = formatData(data);
+        }
+       
+    
+    
     return(
         <>
-            <Geral.Title>Atualizar cadastro</Geral.Title>
+            <Home />
+            <Geral.Title> 
+                <Geral.AreaTitle>
+                    Atualizar informações
+                </Geral.AreaTitle>
+            </Geral.Title>
             <C.Container>
                 <C.FormContainer>
                     <C.Title><h3>Preencha os campos</h3></C.Title>
@@ -57,8 +74,8 @@ const Form = (props:any) => {
                                     defaultValue={musica} onChange={(e)=> setMusica(e.target.value)}  
                                 />
                                 <h3>Data:</h3>
-                                <input className="data" type="date" name="dataInicial" autoComplete="off"
-                                  defaultValue={data} onChange={(e)=> setData(e.target.value)}
+                                <input className="data" type="date"
+                                    defaultValue={dataForm} onChange={(e)=> setData(e.target.value)}
                                 />
                                 <C.Botao type='button' onClick={atualizar}>
                                     Atualizar
